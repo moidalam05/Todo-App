@@ -15,10 +15,10 @@ export const todoSlice = createSlice({
     name: "todo",
     initialState,
     reducers: {
-        addTodo: (actions, state) => { },
-        deleteTodo: (actions) => { },
-        updateTodo: (actions, state) => { },
-        completeTodo: (actions) => { },
+        addTodo: (state, actions) => { },
+        deleteTodo: (state, actions) => { },
+        updateTodo: (state, actions) => { },
+        completeTodo: (state, actions) => { },
     }
 });
 
