@@ -1,9 +1,22 @@
-import React, { useState } from "react";
+import React from "react";
+import { useDispatch } from "react-redux";
+import { addTodo, updateTodo } from "../redux/todoSlice";
+import toast from "react-hot-toast";
 
-const AddTodo = () => {
-  const [todoInput, setTodoInput] = useState("");
+const AddTodo = ({ setTodoInput, todoInput, editTodo, setEditTodo }) => {
+  const dispatch = useDispatch();
   const handleFormSubmit = (e) => {
     e.preventDefault();
+    if (!todoInput.trim()) return;
+    if (editTodo) {
+      dispatch(updateTodo({ id: editTodo, title: todoInput }));
+      setEditTodo(null);
+      toast.success("Todo updated successfully");
+    } else {
+      dispatch(addTodo({ id: Date.now(), title: todoInput, completed: false }));
+      toast.success("Todo added successfully");
+    }
+    setTodoInput("");
   };
   return (
     <form
@@ -21,7 +34,7 @@ const AddTodo = () => {
         className="bg-blue-600 hover:bg-blue-700 active:scale-95 transition-transform duration-150 px-6 py-3 rounded-md text-white font-semibold shadow-md cursor-pointer"
         type="submit"
       >
-        Add Todo
+        {editTodo ? "Update Todo" : "Add Todo"}
       </button>
     </form>
   );
