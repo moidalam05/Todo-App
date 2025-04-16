@@ -1,12 +1,12 @@
-import React from 'react'
-import ListTodo from './components/ListTodo'
+import React from "react";
+import ListTodo from "./components/ListTodo";
 
 const App = () => {
   return (
     <div>
-      <ListTodo/>
+      <ListTodo />
     </div>
-  )
-}
+  );
+};
 
-export default App
+export default App;
